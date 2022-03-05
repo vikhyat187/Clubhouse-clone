@@ -3,3 +3,5 @@
 [how to redirect onclick of a button in react](https://dev.to/projectescape/programmatic-navigation-in-react-3p1l)
 
 [invalid hook call for useHistory ](https://stackoverflow.com/questions/61500646/invalid-hook-call-for-using-usehistory-uselocation-hooks)
+
+[no used expressions](https://stackoverflow.com/questions/52274829/eslint-no-unused-expressions-in-reactjs)
