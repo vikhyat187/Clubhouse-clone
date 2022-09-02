@@ -32,7 +32,7 @@ const Home = () => {
                     </Button>
                 </div>
                 <div className={styles.signinWrapper}>
-                    <span className={styles.hasInvite}>Havke an invite text?</span>
+                    <span className={styles.hasInvite}>Have an invite text?</span>
                 </div>
             </Card>
         </div>

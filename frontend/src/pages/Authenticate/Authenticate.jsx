@@ -18,7 +18,7 @@ const Authenticate = () => {
     }
     return (
         <Step onNext={onNext} />
-    );
+    );  
 }
 
 export default Authenticate
