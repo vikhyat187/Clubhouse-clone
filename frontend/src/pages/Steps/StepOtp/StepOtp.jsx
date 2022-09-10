@@ -15,9 +15,10 @@ const StepOtp = () => {
     async function submit(){
     
         try{
-           
-            const {data} = await verifyOtp({otp, phone ,hash});
-            dispatch(setAuth(data));
+          //TODO: validation message
+          if (!otp || !phone || !hash) return;
+          const { data } = await verifyOtp({ otp, phone, hash });
+          dispatch(setAuth(data));
         }
         catch(err){
             console.log(err)

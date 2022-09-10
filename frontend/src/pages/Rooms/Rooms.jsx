@@ -2,10 +2,10 @@ import React from 'react'
 
 const Rooms = () => {
     return (
-        <div>
-            im rooms
-        </div>
-    )
+      <div>
+        <div> im rooms component</div>
+      </div>
+    );
 }
 
 export default Rooms

@@ -6,14 +6,20 @@ import styles from "./StepAvatar.module.css";
 import {activate} from "../../../http/index"
 import { setAvatar } from "../../../store/activateSlice";
 import {setAuth} from "../../../store/authSlice"
+import Loader from "../../../components/shared/Loader/Loader"
 
 const StepAvatar = ({ onNext }) => {
   const { name, avatar } = useSelector((state) => state.activate);
   const [image, setImage] = useState("/images/monkey-avatar.png");
   const dispatch = useDispatch();
+  const [loading,setLoading] = useState(false);
 
   async function submit() {
+    //TODO: validation message 
+      if(!name || !avatar) return;
+      setLoading(true)
       try{
+
           const {data} = await activate({name, avatar});
           if(data.auth){
             //fully activated
@@ -24,7 +30,10 @@ const StepAvatar = ({ onNext }) => {
       catch(e){
         console.log(e)
       }
-  }
+      finally{
+        setLoading(false);
+      }
+    }
   
   function captureImage(e) {
     const file = e.target.files[0];
@@ -35,6 +44,8 @@ const StepAvatar = ({ onNext }) => {
       dispatch(setAvatar(reader.result))
     }
   }
+  if(loading) return <Loader message="Activation in progress...."/>;
+
   return (
     <>
       <Card title={`Okay, ${name} !`} icon="monkey">
