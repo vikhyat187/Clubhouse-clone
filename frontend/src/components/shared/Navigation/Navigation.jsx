@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 const Navigation = ()=> {
     const dispatch = useDispatch();
-    const {isAuth} = useSelector(state => state.auth)
+    const {user,isAuth} = useSelector(state => state.auth)
     const brandStyle={
         color:'#fff',
         textDecoration:'none',
@@ -38,7 +38,24 @@ const Navigation = ()=> {
             <img src="/images/Logo.svg" alt="logo" />
             <span style={LogoText}>CodersHouse</span>
           </Link>
-          {isAuth && <button onClick={logoutUser}>Logout user</button>}
+          {isAuth && (
+            <div className={styles.navRight}>
+              <h1>{user.name}</h1>
+              <Link to="/">
+                <img
+                  className={styles.avatar}
+                  src={user.avatar}
+                  width="40"
+                  height="40"
+                  alt="avatar"
+                />
+              </Link>
+              <button className={styles.logoutButton} onClick={logoutUser}>
+                <img src="/images/logout.png" alt="Logout" />
+              </button>
+            </div>
+          )}
+          {/* {isAuth && } */}
         </nav>
       </div>
     );

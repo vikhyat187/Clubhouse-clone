@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Card from "../../../components/shared/Card/Card";
 import Button from "../../../components/shared/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ const StepAvatar = ({ onNext }) => {
   const [image, setImage] = useState("/images/monkey-avatar.png");
   const dispatch = useDispatch();
   const [loading,setLoading] = useState(false);
+  const [unMounted, setUnMounted] = useState(false);
 
   async function submit() {
     //TODO: validation message 
@@ -23,7 +24,10 @@ const StepAvatar = ({ onNext }) => {
           const {data} = await activate({name, avatar});
           if(data.auth){
             //fully activated
-            dispatch(setAuth(data ))
+            //check if component is unmounted
+            if(!unMounted){
+              dispatch(setAuth(data ));
+            }
           }
           console.log(data);
       }
@@ -34,6 +38,11 @@ const StepAvatar = ({ onNext }) => {
         setLoading(false);
       }
     }
+    useEffect(() => {
+      return () => {
+        setUnMounted(true)
+      }
+    }, [])
   
   function captureImage(e) {
     const file = e.target.files[0];
